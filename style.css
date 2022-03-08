@@ -16,10 +16,11 @@ body {
   background-color: #aaaaaa;
   height: 500px;
   width: 300px;
-  border-radius: 15px;
-  border: solid 2px;
+  border-radius: 10px;
+  border: solid 3px;
 }
 
+/* Display Row */
 #first-row {
   display: flex;
   justify-content: center;
@@ -39,16 +40,34 @@ body {
 /* Buttons */
 /*  */
 
+/* Clear/Delete Row */
+#clear-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 23px;
+  height: 50px;
+}
+
 /* Clear Button */
 #clear-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25px;
+  height: 40px;
   width: 125px;
   background-color: #ffaaaa;
   border-radius: 5px;
   border: solid 1.5px;
+}
+
+#clear-btn:hover {
+  cursor: pointer;
+  background-color: #ef9f9f;
+}
+
+#clear-btn:active {
+  background-color: #e59898;
 }
 
 /* Clear Button */
@@ -56,17 +75,35 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25px;
+  height: 40px;
   width: 125px;
   background-color: #aaaaff;
   border-radius: 5px;
   border: solid 1.5px;
+  color: black;
+}
+
+#delete-btn:hover {
+  cursor: pointer;
+}
+
+#delete-btn:active {
+  background-color: #8f8fd7;
+}
+
+/* First Logic Row */
+.logic-rows {
+  display: flex;
+  height: 90px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Logic Buttons */
 .logic-btn {
-  height: 25px;
-  width: 25px;
+  height: 60px;
+  width: 60px;
   background-color: #eeeeee;
   display: flex;
   justify-content: center;
@@ -74,4 +111,15 @@ body {
   text-align: center;
   border-radius: 5px;
   border: solid 1.5px;
+  color: black;
+}
+
+.logic-btn:hover {
+  cursor: pointer;
+  background-color: #d9d9d9;
+}
+
+.logic-btn:active {
+  cursor: pointer;
+  background-color: #cccccc;
 }
