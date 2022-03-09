@@ -41,6 +41,22 @@ body {
   align-items: flex-end;
 }
 
+.prev-operand {
+  font-size: 15px;
+  margin-right: 5px;
+  color: rgb(114, 114, 114);
+}
+
+#curr-operand {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.curr-operand {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
 /*  */
 /* Buttons */
 /*  */
@@ -126,6 +142,54 @@ body {
 }
 
 .logic-btn:active {
+  cursor: pointer;
+  background-color: #cccccc;
+}
+
+/* Exit buttons */
+.logic-exit {
+  height: 60px;
+  width: 60px;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  border: solid 1.5px;
+  color: black;
+}
+
+.logic-exit:hover {
+  cursor: pointer;
+  background-color: #d9d9d9;
+}
+
+.logic-exit:active {
+  cursor: pointer;
+  background-color: #cccccc;
+}
+
+/* Equal btn */
+.logic-equal {
+  height: 60px;
+  width: 60px;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  border: solid 1.5px;
+  color: black;
+}
+
+.logic-equal:hover {
+  cursor: pointer;
+  background-color: #d9d9d9;
+}
+
+.logic-equal:active {
   cursor: pointer;
   background-color: #cccccc;
 }
