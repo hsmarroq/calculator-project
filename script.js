@@ -3,22 +3,28 @@
 // Display
 let prevOperant = document.querySelector('.prev-operand');
 let currentOperant = document.querySelector('.current-operand');
+let currentOperantText = document.querySelector('.current-operand').textContent;
+let deleteBtn = document.querySelector('.delete-btn');
 
+// Clear Button Clicker
 const clear = () => {
   prevOperant.textContent = '';
   currentOperant.textContent = '';
 };
 
+document.querySelector('.clear-btn').addEventListener('click', () => {
+  clear();
+});
+
+// Delete Button
 const deleteNum = () => {
-  currentOperant.textContent.toString().slice(0, -1);
+  currentOperantText.toString().slice(0, -1);
 };
 
 document.querySelector('.delete-btn').addEventListener('click', () => {
-  deleteNum();
-});
-
-document.querySelector('.clear-btn').addEventListener('click', () => {
-  clear();
+  currentOperant.textContent = currentOperant.textContent
+    .toString()
+    .slice(0, -1);
 });
 
 // Logic Buttons
@@ -32,10 +38,12 @@ logicBtns.forEach(btn => {
 
 let logicExits = document.querySelectorAll('.logic-exit');
 
-logicExits.forEach(newBtn => {
+const exitName = logicExits.forEach(newBtn => {
   newBtn.addEventListener('click', () => {
     currentOperant.textContent += newBtn.textContent;
     prevOperant.textContent = currentOperant.textContent;
     currentOperant.textContent = '';
   });
 });
+
+// deleteBtn;
