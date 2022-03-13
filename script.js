@@ -3,6 +3,8 @@
 let logicExitLogged = '';
 let finalResult;
 let clicked = false;
+let decimalClicked = false;
+let BtnsFinalClicked = false;
 
 // Display //
 let prevOperant = document.querySelector('.prev-operand');
@@ -10,13 +12,15 @@ let currentOperant = document.querySelector('.current-operand');
 let currentOperantText = document.querySelector('.current-operand').textContent;
 let deleteBtn = document.querySelector('.delete-btn');
 
-// Clear Button Clicker //
+// Clear Function & Button Clicker //
 const clear = () => {
   prevOperant.textContent = '';
-  currentOperant.textContent = '';
+  currentOperant.textContent = '0';
   logicExitLogged = '';
   clicked = false;
   finalResult = undefined;
+  decimalClicked = false;
+  BtnsFinalClicked = false;
 };
 
 document.querySelector('.clear-btn').addEventListener('click', () => {
@@ -35,7 +39,12 @@ let logicBtns = document.querySelectorAll('.logic-btn');
 
 logicBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    currentOperant.textContent += btn.textContent;
+    if (BtnsFinalClicked == false) {
+      if (currentOperant.innerHTML == '0') {
+        currentOperant.innerHTML = '';
+      }
+      currentOperant.textContent += btn.textContent;
+    }
   });
 });
 
@@ -44,14 +53,29 @@ let logicExits = document.querySelectorAll('.logic-exit');
 
 const exitName = logicExits.forEach(newBtn => {
   newBtn.addEventListener('click', () => {
-    if (clicked == false) {
+    if (clicked == false && finalResult == undefined) {
       prevOperant.textContent = currentOperant.textContent;
       currentOperant.textContent = '';
       logicExitLogged += newBtn.textContent;
-      console.log(logicExitLogged);
       clicked = true;
     }
+
+    if (finalResult !== undefined) {
+      clicked = true;
+      BtnsFinalClicked = false;
+      prevOperant.innerHTML = currentOperant.innerHTML;
+      currentOperant.innerHTML = '';
+    }
   });
+});
+
+// Decimal Clicked //
+document.querySelector('.logic-decimal').addEventListener('click', () => {
+  if (decimalClicked == false) {
+    decimalClicked = true;
+    currentOperant.innerHTML +=
+      document.querySelector('.logic-decimal').textContent;
+  }
 });
 
 // Switch Operator for addition, division, etc //
@@ -60,82 +84,40 @@ const logicSwitch = () => {
   switch (logicExitLogged) {
     case '+':
       finalResult =
-        parseInt(currentOperant.textContent) +
-        parseInt(prevOperant.textContent);
-      prevOperant.textContent = '';
-      currentOperant.innerHTML = parseInt(finalResult);
-      break;
-    case '/':
-      finalResult =
-        parseInt(prevOperant.textContent) /
-        parseInt(currentOperant.textContent);
-      prevOperant.textContent = '';
-      currentOperant.innerHTML = parseInt(finalResult);
-      break;
-    case '*':
-      finalResult =
-        parseInt(prevOperant.textContent) *
-        parseInt(currentOperant.textContent);
-      prevOperant.textContent = '';
-      currentOperant.innerHTML = parseInt(finalResult);
-      break;
-    case '-':
-      finalResult =
-        parseInt(prevOperant.textContent) -
-        parseInt(currentOperant.textContent);
-      prevOperant.textContent = '';
-      currentOperant.innerHTML = parseInt(finalResult);
-      break;
-  }
-};
-
-const ifResultDefined = () => {
-  switch (logicExitLogged) {
-    case '+':
-      let addedUp =
-        parseInt(currentOperant.textContent) +
-        parseInt(prevOperant.textContent);
-      finalResult += addedUp;
+        parseFloat(currentOperant.textContent) +
+        parseFloat(prevOperant.textContent);
       prevOperant.textContent = '';
       currentOperant.innerHTML = finalResult;
       break;
     case '/':
-      let divided =
-        parseInt(currentOperant.textContent) /
-        parseInt(prevOperant.textContent);
-      finalResult += addedUp;
+      finalResult =
+        parseFloat(prevOperant.textContent) /
+        parseFloat(currentOperant.textContent);
       prevOperant.textContent = '';
       currentOperant.innerHTML = finalResult;
       break;
     case '*':
-      let multiplied =
-        parseInt(currentOperant.textContent) *
-        parseInt(prevOperant.textContent);
-      finalResult += addedUp;
+      finalResult =
+        parseFloat(prevOperant.textContent) *
+        parseFloat(currentOperant.textContent);
       prevOperant.textContent = '';
       currentOperant.innerHTML = finalResult;
       break;
     case '-':
-      let subtracted =
-        parseInt(currentOperant.textContent) -
-        parseInt(prevOperant.textContent);
-      finalResult += addedUp;
+      finalResult =
+        parseFloat(prevOperant.textContent) -
+        parseFloat(currentOperant.textContent);
       prevOperant.textContent = '';
       currentOperant.innerHTML = finalResult;
       break;
-    default:
-      currentOperant.innerHTML = finalResult;
   }
 };
 
 document.querySelector('.logic-equal').addEventListener('click', () => {
   if (currentOperant.innerHTML !== '' && prevOperant.innerHTML !== '') {
-    if (finalResult == undefined) {
-      logicSwitch();
-      logicExitLogged = '';
-    } else if (finalResult == Number) {
-      ifResultDefined();
-      logicExitLogged = '';
-    }
+    logicSwitch();
+    logicExitLogged = '';
+    BtnsFinalClicked = true;
+    clicked = false;
   }
 });
