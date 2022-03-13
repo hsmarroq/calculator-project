@@ -60,7 +60,7 @@ const exitName = logicExits.forEach(newBtn => {
       clicked = true;
     }
 
-    if (finalResult !== undefined) {
+    if (clicked == false && finalResult !== undefined) {
       clicked = true;
       BtnsFinalClicked = false;
       prevOperant.innerHTML = currentOperant.innerHTML;
