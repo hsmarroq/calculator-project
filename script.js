@@ -61,9 +61,10 @@ const exitName = logicExits.forEach(newBtn => {
     }
 
     if (clicked == false && finalResult !== undefined) {
+      logicExitLogged += newBtn.textContent;
       clicked = true;
       BtnsFinalClicked = false;
-      prevOperant.innerHTML = currentOperant.innerHTML;
+      prevOperant.textContent = currentOperant.textContent;
       currentOperant.innerHTML = '';
     }
   });
@@ -113,6 +114,8 @@ const logicSwitch = () => {
   }
 };
 
+// Clicker for the equal button ///
+// It should add everything based on the operation being logged //
 document.querySelector('.logic-equal').addEventListener('click', () => {
   if (currentOperant.innerHTML !== '' && prevOperant.innerHTML !== '') {
     logicSwitch();
